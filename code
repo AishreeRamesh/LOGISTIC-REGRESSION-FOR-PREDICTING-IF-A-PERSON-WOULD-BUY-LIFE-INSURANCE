@@ -1,0 +1,20 @@
+import pandas as pd
+from matplotlib import pyplot as plt
+#matplotlib inline
+df = pd.read_csv("insurance_data.csv")
+df.head()
+plt.scatter(df.age,df.bought_insurance,marker='+',color='purple')
+from sklearn.model_selection import train_test_split
+x_train,x_test,y_train,y_test=train_test_split(df[['age']],df.bought_insu
+rance,test_size=0.2)
+x_testfrom sklearn.linear_model import LogisticRegression
+model = LogisticRegression()
+model.fit(x_train,y_train)
+model.predict(x_test)
+model.score(x_test,y_test)
+model.predict_proba(x_test)
+test_pred=model.predict([[56]])
+If test_pred[0]==0:
+Print("the customer will not buy the insurance")
+Else:
+Print("the customer will buy the insurance")
